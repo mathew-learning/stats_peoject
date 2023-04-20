@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'panel.dart';
 import 'dashboard_table.dart';
 import 'admin.dart';
+import 'login.dart';
+//import 'admin_new.dart';
 
 class NavRail extends StatefulWidget{
   const NavRail ({super.key});
@@ -47,9 +49,35 @@ class _NavRailState extends  State<NavRail> {
     return LayoutBuilder(
       builder: (context, constraints) {
         return Scaffold(appBar: AppBar(
+                            automaticallyImplyLeading: false,
+                            title: const Text(
+  'STATS',
+  style: TextStyle(
+    fontSize: 30, // set font size
+    fontWeight: FontWeight.bold, // set font weight
+    fontStyle: FontStyle.normal, // set font style
+    color: Colors.white, // set font color
+  ),
+),
+actions: <Widget>[
+          ElevatedButton(onPressed: (){
+Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => LoginPage()),
+            );
+          }, child: Text(
+  'Logout',
+  style: TextStyle(
+    fontSize: 15, // set font size
+    fontWeight: FontWeight.bold, // set font weight
+    fontStyle: FontStyle.normal, // set font style
+    color: Colors.green, // set font color
+  ),
+),)
+        ], // disable the "back" button
+
             toolbarHeight: 80, // default is 56
   toolbarOpacity: 0.5,
-            title: const Text(''),
             scrolledUnderElevation: scrolledUnderElevation,
             //shadowColor: Theme.of(context).primaryColorDark,
             backgroundColor: Theme.of(context).primaryColor,
@@ -83,24 +111,56 @@ class _NavRailState extends  State<NavRail> {
 
                 destinations:const <NavigationRailDestination>[
                   NavigationRailDestination(
-                    icon: Icon(Icons.dashboard_customize),
-                    selectedIcon: Icon(Icons.dashboard),
-                    label: Text('Dasboard'),
+                    icon: Icon(Icons.dashboard_customize,size: 30,),
+                    selectedIcon: Icon(Icons.dashboard,size: 50,),
+                    label: Text(
+  'Dashboard',
+  style: TextStyle(
+    fontSize: 15, // set font size
+    fontWeight: FontWeight.bold, // set font weight
+    fontStyle: FontStyle.normal, // set font style
+    color: Colors.black, // set font color
+  ),
+),
                   ),
                   NavigationRailDestination(
-                    icon: Icon(Icons.admin_panel_settings_outlined),
-                    selectedIcon: Icon(Icons.admin_panel_settings),
-                    label: Text('Admin'),
+                    icon: Icon(Icons.admin_panel_settings_outlined,size: 30,),
+                    selectedIcon: Icon(Icons.admin_panel_settings,size: 50,),
+                    label: Text(
+  'Admin',
+  style: TextStyle(
+    fontSize: 15, // set font size
+    fontWeight: FontWeight.bold, // set font weight
+    fontStyle: FontStyle.normal, // set font style
+    color: Colors.black, // set font color
+  ),
+),
                   ),
                   NavigationRailDestination(
-                    icon: Icon(Icons.person_2),
-                    selectedIcon: Icon(Icons.person),
-                    label: Text('Panel'),
+                    icon: Icon(Icons.person_2,size: 30,),
+                    selectedIcon: Icon(Icons.person,size: 50,),
+                    label: Text(
+  'Panel',
+  style: TextStyle(
+    fontSize: 15, // set font size
+    fontWeight: FontWeight.bold, // set font weight
+    fontStyle: FontStyle.normal, // set font style
+    color: Colors.black, // set font color
+  ),
+),
                   ),
                   NavigationRailDestination(
-                    icon: Icon(Icons.report_off),
-                    selectedIcon: Icon(Icons.report),
-                    label: Text('Reports'),
+                    icon: Icon(Icons.report_off,size:30),
+                    selectedIcon: Icon(Icons.report,size:50),
+                    label: Text(
+  'Reports',
+  style: TextStyle(
+    fontSize: 15, // set font size
+    fontWeight: FontWeight.bold, // set font weight
+    fontStyle: FontStyle.normal, // set font style
+    color: Colors.black, // set font color
+  ),
+),
                   ),
                 ],
               ),
