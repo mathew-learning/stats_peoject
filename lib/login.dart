@@ -34,7 +34,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 144, 200, 146),
+      backgroundColor: Color.fromARGB(255, 237, 239, 237),
       appBar: AppBar(
                                   automaticallyImplyLeading: false,
 
@@ -78,7 +78,7 @@ class _LoginPageState extends State<LoginPage> {
                   //   blurRadius: 5,
                   // ),
                   BoxShadow(
-                color: Colors.white.withOpacity(0.5), //color of shadow
+                color: Color.fromARGB(255, 146, 232, 156).withOpacity(0.5), //color of shadow
                   spreadRadius: 5, //spread radius
                   blurRadius: 7, // blur radius
                   offset: Offset(0, 2), // changes position of shadow

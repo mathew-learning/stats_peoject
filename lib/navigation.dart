@@ -3,6 +3,7 @@ import 'panel.dart';
 import 'dashboard_table.dart';
 import 'admin.dart';
 import 'login.dart';
+import 'customer_page.dart';
 //import 'admin_new.dart';
 
 class NavRail extends StatefulWidget{
@@ -29,6 +30,8 @@ class _NavRailState extends  State<NavRail> {
       return AdminPage();
       case 2:
       return PanelPage();
+      case 3:
+      return CustomerPage();
       // case 0:
       //   return NamePage();
       // case 1:
@@ -141,6 +144,20 @@ Navigator.push(
                     selectedIcon: Icon(Icons.person,size: 50,),
                     label: Text(
   'Panel',
+  style: TextStyle(
+    fontSize: 15, // set font size
+    fontWeight: FontWeight.bold, // set font weight
+    fontStyle: FontStyle.normal, // set font style
+    color: Colors.black, // set font color
+  ),
+),
+                  ),
+
+                  NavigationRailDestination(
+                    icon: Icon(Icons.person_2,size: 30,),
+                    selectedIcon: Icon(Icons.person,size: 50,),
+                    label: Text(
+  'Client',
   style: TextStyle(
     fontSize: 15, // set font size
     fontWeight: FontWeight.bold, // set font weight
