@@ -4,6 +4,7 @@ import 'dashboard_table.dart';
 import 'admin.dart';
 import 'login.dart';
 import 'customer_page.dart';
+import 'client_new.dart';
 //import 'admin_new.dart';
 
 class NavRail extends StatefulWidget{
@@ -31,7 +32,7 @@ class _NavRailState extends  State<NavRail> {
       case 2:
       return PanelPage();
       case 3:
-      return CustomerPage();
+      return ClientPage();
       // case 0:
       //   return NamePage();
       // case 1:
