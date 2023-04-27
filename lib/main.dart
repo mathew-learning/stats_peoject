@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'edit_panel.dart';
 import 'login.dart';
 import 'database/create_table.dart';
 void main() {
@@ -22,16 +21,8 @@ class MyApp extends StatelessWidget {
 
 
       ),
-      home:  Column(
-        children: [
-          
-          ElevatedButton(child: Text('Insert Date'),onPressed: (){
-            InsertData();
-
-          },),
-        ],
-      )
-      //LoginPage(),
+      home:  
+      LoginPage(),
     );
   }
 }

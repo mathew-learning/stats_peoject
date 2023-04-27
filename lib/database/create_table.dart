@@ -60,7 +60,7 @@ final conn = PostgreSQLConnection('localhost', 5432, 'myfirstpostgresDB',usernam
                                     Modified_by ,
                                     Modified_date)
                                     VALUES
-                                    (1,
+                                    (
                                       'info',
                                     'ram',
                                     'sita',

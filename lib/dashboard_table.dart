@@ -1,62 +1,26 @@
 import 'package:flutter/material.dart';
 
 
-class TablePage extends StatelessWidget {
-  const TablePage({super.key});
+
+class MyTable extends StatelessWidget {
+  final List<String> headers;
+  final List<List<TextEditingController>> dataControllers;
+
+  MyTable({required this.headers, required this.dataControllers});
 
   @override
   Widget build(BuildContext context) {
-    return Table(
-      border: TableBorder.all(),
-      columnWidths: const <int, TableColumnWidth>{
-        0: IntrinsicColumnWidth(),
-        1: FlexColumnWidth(),
-        2: FixedColumnWidth(64),
-      },
-      defaultVerticalAlignment: TableCellVerticalAlignment.middle,
-      children: <TableRow>[
-        TableRow(
-          decoration: const BoxDecoration(
-            color: Colors.greenAccent,
-            
-          ),
-          children: <Widget>[
-            Container(
-              height: 32,
-            ),
-            TableCell(
-              verticalAlignment: TableCellVerticalAlignment.top,
-              child: Container(
-                height: 32,
-                width: 32,
-              ),
-            ),
-            Container(
-              height: 64,
-            ),
-          ],
-        ),
-        TableRow(
-          decoration: const BoxDecoration(
-            color: Colors.white,
-          ),
-          children: <Widget>[
-            Container(
-              height: 64,
-              width: 128,
-            ),
-            Container(
-              height: 32,
-            ),
-            Center(
-              child: Container(
-                height: 32,
-                width: 32,
-              ),
-            ),
-          ],
-        ),
-      ],
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: DataTable(
+        columns: headers
+            .map((header) => DataColumn(label: Text(header)))
+            .toList(),
+        rows: dataControllers
+            .map((rowControllers) =>
+                DataRow(cells: rowControllers.map((controller) => DataCell(Text(controller.text))).toList()))
+            .toList(),
+      ),
     );
   }
 }

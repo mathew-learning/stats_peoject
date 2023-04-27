@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'login.dart';
 import 'package:date_field/date_field.dart';
+import 'database/data_base.dart';
+import 'global/controllers.dart';
 
 
 
@@ -20,44 +22,55 @@ class _CreateClientPageState extends State<CreateClientPage>{
     List<String> items = ['Select Business','Incoporated','OBNL'];
         String? selectedItem = 'Select Business';
 
+
+            var newValue = '';
+            bool _validateName = false;
+
+
+
+
+
+
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color.fromARGB(255, 234, 249, 234),
-      appBar: AppBar(
-                            automaticallyImplyLeading: true,
-                            title: const Text(
-  'STATS',
-  style: TextStyle(
-    fontSize: 30, // set font size
-    fontWeight: FontWeight.bold, // set font weight
-    fontStyle: FontStyle.normal, // set font style
-    color: Colors.white, // set font color
-  ),
-),
-actions: <Widget>[
-          ElevatedButton(onPressed: (){
-Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => LoginPage()),
-            );
-          }, child: Text(
-  'Logout',
-  style: TextStyle(
-    fontSize: 15, // set font size
-    fontWeight: FontWeight.bold, // set font weight
-    fontStyle: FontStyle.normal, // set font style
-    color: Colors.green, // set font color
-  ),
-),)
-        ], // disable the "back" button
+//       appBar: AppBar(
+//                             automaticallyImplyLeading: true,
+//                             title: const Text(
+//   'STATS',
+//   style: TextStyle(
+//     fontSize: 30, // set font size
+//     fontWeight: FontWeight.bold, // set font weight
+//     fontStyle: FontStyle.normal, // set font style
+//     color: Colors.white, // set font color
+//   ),
+// ),
+// actions: <Widget>[
+//           ElevatedButton(onPressed: (){
+// Navigator.push(
+//               context,
+//               MaterialPageRoute(builder: (context) => LoginPage()),
+//             );
+//           }, child: Text(
+//   'Logout',
+//   style: TextStyle(
+//     fontSize: 15, // set font size
+//     fontWeight: FontWeight.bold, // set font weight
+//     fontStyle: FontStyle.normal, // set font style
+//     color: Colors.green, // set font color
+//   ),
+// ),)
+//         ], // disable the "back" button
 
-            toolbarHeight: 80, // default is 56
-  toolbarOpacity: 0.5,
-            scrolledUnderElevation: scrolledUnderElevation,
-            //shadowColor: Theme.of(context).primaryColorDark,
-            backgroundColor: Theme.of(context).primaryColor,
-          ),
+//             toolbarHeight: 80, // default is 56
+//   toolbarOpacity: 0.5,
+//             scrolledUnderElevation: scrolledUnderElevation,
+//             //shadowColor: Theme.of(context).primaryColorDark,
+//             backgroundColor: Theme.of(context).primaryColor,
+//           ),
             // bottomNavigationBar: BottomAppBar(
             // color: Color.fromARGB(255, 163, 226, 163),
             //  height: 20,
@@ -69,6 +82,8 @@ Navigator.push(
             //   onPressed: null,child: Text('Submit')),
         floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
+          insertBusinessdetails(business_name.text, newValue,businessvalue.text, businessdiscription.text,name.text, status.text, phone.text, email.text, cco.text, lang.text,rom.text, mm.text, so.text, mp.text);
+
           // Add your onPressed code here!
         },
         label: const Text(
@@ -158,7 +173,7 @@ Navigator.push(
               ),
               ),
                                TextField(
-                                              //controller: usernameValue,
+                                              controller: business_name,
                                               decoration: InputDecoration(
                                               //labelText: 'Username',
                                               hintText: '',
@@ -170,6 +185,7 @@ Navigator.push(
                                               },
                                               onSubmitted: (value) {
                                               // Do something when the user submits the text field
+                                              business_name.clear();
                                               },
                                             ),
                              ],
@@ -187,7 +203,7 @@ Navigator.push(
                 color: Colors.black, // set font color
               ),),
                                TextField(
-                                              //controller: usernameValue,
+                                              controller: businessreg_num,
                                               decoration: InputDecoration(
                                               //labelText: 'Username',
                                               hintText: '',
@@ -199,6 +215,7 @@ Navigator.push(
                                               },
                                               onSubmitted: (value) {
                                               // Do something when the user submits the text field
+                                              businessreg_num.clear();
                                               },
                                             ),
                              ],
@@ -252,8 +269,8 @@ Navigator.push(
                         child:Text(item, style: TextStyle(fontSize: 20))
                       )
                     ).toList(),
-                    onChanged: (item) => setState(() => selectedItem),
-                    ),
+                    onChanged: (newValue) => setState(() => selectedItem = newValue),
+),
                              ],
                            ),
                            )
@@ -277,18 +294,34 @@ Navigator.push(
                 color: Colors.black, // set font color
               ),),
                                TextField(
-                                              //controller: usernameValue,
+                                              controller: businessdiscription,
                                               decoration: InputDecoration(
                                               //labelText: 'Username',
                                               hintText: '',
+                                              prefixIcon: Text(
+                                                '*',
+                                                style: TextStyle(
+                                                color:Colors.red,
+                                                fontWeight:FontWeight.bold
+                                              )),
+                                              errorText:_validateName? 'Please enter the value' : null,
+                                              errorBorder: OutlineInputBorder(
+                                                borderSide: BorderSide(color: Colors.red,
+                                                width:1.0),
+                                                borderRadius: BorderRadius.circular(12.0),
+                                              ),
                                               border: OutlineInputBorder(      borderSide: BorderSide(color: Colors.red),),),
+                                              
                                               keyboardType: TextInputType.text,
                                               textCapitalization: TextCapitalization.words,
                                               onChanged: (value) {
-                                              // Do something when the text changes
+                                                setState(() {
+                                                  _validateName = value.isEmpty;
+                                                });
                                               },
                                               onSubmitted: (value) {
                                               // Do something when the user submits the text field
+                                              businessdiscription.clear();
                                               },
                                             ),
                              ],
@@ -306,7 +339,7 @@ Navigator.push(
                 color: Colors.black, // set font color
               ),),
                                TextField(
-                                              //controller: usernameValue,
+                                              controller: businessvalue,
                                               decoration: InputDecoration(
                                               //labelText: 'Username',
                                               hintText: '',
@@ -318,6 +351,7 @@ Navigator.push(
                                               },
                                               onSubmitted: (value) {
                                               // Do something when the user submits the text field
+                                              businessvalue.clear();
                                               },
                                             ),
                              ],
@@ -408,7 +442,7 @@ Navigator.push(
                 color: Colors.black, // set font color
               ),),
                                TextField(
-                                              //controller: usernameValue,
+                                              controller: name,
                                               decoration: InputDecoration(
                                               //labelText: 'Username',
                                               hintText: '',
@@ -420,6 +454,7 @@ Navigator.push(
                                               },
                                               onSubmitted: (value) {
                                               // Do something when the user submits the text field
+                                              name.clear();
                                               },
                                             ),
                              ],
@@ -437,7 +472,7 @@ Navigator.push(
                 color: Colors.black, // set font color
               ),),
                                TextField(
-                                              //controller: usernameValue,
+                                              controller: status,
                                               decoration: InputDecoration(
                                               //labelText: 'Username',
                                               hintText: '',
@@ -449,6 +484,7 @@ Navigator.push(
                                               },
                                               onSubmitted: (value) {
                                               // Do something when the user submits the text field
+                                              status.clear();
                                               },
                                             ),
                              ],
@@ -468,7 +504,7 @@ Navigator.push(
                 color: Colors.black, // set font color
               ),),
                                TextField(
-                                              //controller: usernameValue,
+                                              controller: phone,
                                               decoration: InputDecoration(
                                               //labelText: 'Username',
                                               hintText: '',
@@ -479,6 +515,7 @@ Navigator.push(
                                               // Do something when the text changes
                                               },
                                               onSubmitted: (value) {
+                                                phone.clear();
                                               // Do something when the user submits the text field
                                               },
                                             ),
@@ -505,7 +542,7 @@ Navigator.push(
                 color: Colors.black, // set font color
               ),),
                                TextField(
-                                              //controller: usernameValue,
+                                              controller: email,
                                               decoration: InputDecoration(
                                               //labelText: 'Username',
                                               hintText: '',
@@ -516,6 +553,7 @@ Navigator.push(
                                               // Do something when the text changes
                                               },
                                               onSubmitted: (value) {
+                                                email.clear();
                                               // Do something when the user submits the text field
                                               },
                                             ),
@@ -534,7 +572,7 @@ Navigator.push(
                 color: Colors.black, // set font color
               ),),
                                TextField(
-                                              //controller: usernameValue,
+                                              controller: coo,
                                               decoration: InputDecoration(
                                               //labelText: 'Username',
                                               hintText: '',
@@ -545,6 +583,7 @@ Navigator.push(
                                               // Do something when the text changes
                                               },
                                               onSubmitted: (value) {
+                                                coo.clear();
                                               // Do something when the user submits the text field
                                               },
                                             ),
@@ -565,7 +604,7 @@ Navigator.push(
                 color: Colors.black, // set font color
               ),),
                                TextField(
-                                              //controller: usernameValue,
+                                              controller: lang,
                                               decoration: InputDecoration(
                                               //labelText: 'Username',
                                               hintText: '',
@@ -576,6 +615,7 @@ Navigator.push(
                                               // Do something when the text changes
                                               },
                                               onSubmitted: (value) {
+                                                lang.clear();
                                               // Do something when the user submits the text field
                                               },
                                             ),
@@ -651,7 +691,7 @@ Navigator.push(
                 color: Colors.black, // set font color
               ),),
                                TextField(
-                                              //controller: usernameValue,
+                                              controller: rom,
                                               decoration: InputDecoration(
                                               //labelText: 'Username',
                                               hintText: '',
@@ -662,6 +702,7 @@ Navigator.push(
                                               // Do something when the text changes
                                               },
                                               onSubmitted: (value) {
+                                                rom.clear();
                                               // Do something when the user submits the text field
                                               },
                                             ),
@@ -680,7 +721,7 @@ Navigator.push(
                 color: Colors.black, // set font color
               ),),
                                TextField(
-                                              //controller: usernameValue,
+                                              controller: mm,
                                               decoration: InputDecoration(
                                               //labelText: 'Username',
                                               hintText: '',
@@ -692,6 +733,7 @@ Navigator.push(
                                               },
                                               onSubmitted: (value) {
                                               // Do something when the user submits the text field
+                                              mm.clear();
                                               },
                                             ),
                              ],
@@ -711,7 +753,7 @@ Navigator.push(
                 color: Colors.black, // set font color
               ),),
                                TextField(
-                                              //controller: usernameValue,
+                                              controller: mp,
                                               decoration: InputDecoration(
                                               //labelText: 'Username',
                                               hintText: '',
@@ -722,6 +764,7 @@ Navigator.push(
                                               // Do something when the text changes
                                               },
                                               onSubmitted: (value) {
+                                                mp.clear();
                                               // Do something when the user submits the text field
                                               },
                                             ),
@@ -749,7 +792,7 @@ Navigator.push(
                 color: Colors.black, // set font color
               ),),
                                TextField(
-                                              //controller: usernameValue,
+                                              controller: so,
                                               decoration: InputDecoration(
                                               //labelText: 'Username',
                                               hintText: '',
@@ -760,6 +803,7 @@ Navigator.push(
                                               // Do something when the text changes
                                               },
                                               onSubmitted: (value) {
+                                                so.clear();
                                               // Do something when the user submits the text field
                                               },
                                             ),
@@ -779,7 +823,7 @@ Navigator.push(
                 color: Colors.black, // set font color
               ),),
                                TextField(
-                                              //controller: usernameValue,
+                                              controller: rtw,
                                               decoration: InputDecoration(
                                               //labelText: 'Username',
                                               hintText: '',
@@ -791,6 +835,7 @@ Navigator.push(
                                               },
                                               onSubmitted: (value) {
                                               // Do something when the user submits the text field
+                                              rtw.clear();
                                               },
                                             ),
                              ],
@@ -810,7 +855,7 @@ Navigator.push(
                 color: Colors.black, // set font color
               ),),
                                TextField(
-                                              //controller: usernameValue,
+                                              controller: na,
                                               decoration: InputDecoration(
                                               //labelText: 'Username',
                                               hintText: '',
@@ -822,6 +867,7 @@ Navigator.push(
                                               },
                                               onSubmitted: (value) {
                                               // Do something when the user submits the text field
+                                              na.clear();
                                               },
                                             ),
                              ],

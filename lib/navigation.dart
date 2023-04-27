@@ -5,7 +5,17 @@ import 'admin.dart';
 import 'login.dart';
 import 'customer_page.dart';
 import 'client_new.dart';
+import 'create_panel.dart';
+import 'create_client_page.dart';
+import 'global/controllers.dart';
+
 //import 'admin_new.dart';
+
+
+List<String> headers = ['Business Name', 'Registration Number', 'Type of Business', 'Business Value', 'Business Description'];
+List<List<TextEditingController>> dataControllers = [
+  [business_name, businessreg_num, typeofbusiness, businessvalue, businessdiscription],
+];
 
 class NavRail extends StatefulWidget{
   const NavRail ({super.key});
@@ -26,13 +36,14 @@ class _NavRailState extends  State<NavRail> {
   Widget buildPages() {
     switch (_selectedIndex) {
       case 0:
-      return TablePage();
+      return MyTable(headers: headers,dataControllers:dataControllers);
       case 1:
       return AdminPage();
       case 2:
-      return PanelPage();
+      return CreatePanelPage();
       case 3:
-      return ClientPage();
+      return CreateClientPage();
+      //return ClientPage();
       // case 0:
       //   return NamePage();
       // case 1:
@@ -52,7 +63,8 @@ class _NavRailState extends  State<NavRail> {
   Widget build(BuildContext context){
     return LayoutBuilder(
       builder: (context, constraints) {
-        return Scaffold(appBar: AppBar(
+        return Scaffold(
+          appBar: AppBar(
                             automaticallyImplyLeading: false,
                             title: const Text(
   'STATS',
