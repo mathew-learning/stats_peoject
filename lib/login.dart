@@ -78,7 +78,7 @@ class _LoginPageState extends State<LoginPage> {
                   //   blurRadius: 5,
                   // ),
                   BoxShadow(
-                color: Color.fromARGB(255, 146, 232, 156).withOpacity(0.5), //color of shadow
+                color: Color.fromARGB(255, 174, 179, 224).withOpacity(0.5), //color of shadow
                   spreadRadius: 5, //spread radius
                   blurRadius: 7, // blur radius
                   offset: Offset(0, 2), // changes position of shadow

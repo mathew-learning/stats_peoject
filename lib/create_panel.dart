@@ -23,7 +23,7 @@ class _CreatePanelPageState extends State<CreatePanelPage>{
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 234, 249, 234),
+      backgroundColor: Color.fromARGB(255, 244, 246, 244),
 //       appBar: AppBar(
 //                             automaticallyImplyLeading: true,
 //                             title: const Text(
